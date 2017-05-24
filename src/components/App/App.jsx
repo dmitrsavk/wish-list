@@ -1,6 +1,8 @@
 import React from 'react';
 
 import './App.scss';
+import './bootstrap.min.css';
+import LoginPage from '../LoginPage';
 
 class App extends React.Component {
     constructor(props) {
@@ -10,7 +12,7 @@ class App extends React.Component {
     render() {
         return (
             <div className='App'>
-                <h1>Login page</h1>
+                <LoginPage />
             </div>
         );
     }

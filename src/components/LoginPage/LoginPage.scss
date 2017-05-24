@@ -1,0 +1,24 @@
+@import '../Media/media';
+
+.login-page {
+	position: relative;
+	width: 100%;
+	height: 100vh;
+}
+
+.login-page__form {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	width: 500px;
+	margin: 0 auto;
+	padding-right: 85px;
+}
+
+@include media-s {
+	.login-page__form {
+		width: 100%;
+		padding: 0 25px;
+	}
+}
