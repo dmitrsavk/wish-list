@@ -1,16 +1,27 @@
 /*jshint esversion: 6 */
 
-import express  from 'express';
-import React    from 'react';
-import ReactDom from 'react-dom/server';
-import App      from 'components/App';
+import express from 'express';
+import React from 'react';
+import App from 'components/App';
+import ReactDOMServer from 'react-dom/server';
+import { StaticRouter } from 'react-router';
+import routes from './routes';
+
 
 const app = express();
 
 app.use((req, res) => {
-  const componentHTML = ReactDom.renderToString(<App />);
+    const context = {};
+    const html = ReactDOMServer.renderToString(
+        <StaticRouter
+            location={req.url}
+            context={context}
+        >
+            {routes}
+        </StaticRouter>
+    );
 
-  return res.end(renderHTML(componentHTML));
+    res.status(200).send(renderHTML(html));
 });
 
 const assetUrl = process.env.NODE_ENV !== 'production' ? 'http://localhost:8050' : '/';

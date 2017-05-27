@@ -5,11 +5,10 @@ import Form from 'react-bootstrap/lib/Form';
 import FormControl from 'react-bootstrap/lib/FormControl';
 import ControlLabel from 'react-bootstrap/lib/ControlLabel';
 import Button from 'react-bootstrap/lib/Button';
-import Checkbox from 'react-bootstrap/lib/Checkbox';
 
 import Header from '../Header';
 
-import './LoginPage.scss';
+import './SignupPage.scss';
 
 const formInstance = (
     <Form horizontal>
@@ -31,37 +30,40 @@ const formInstance = (
             </Col>
         </FormGroup>
 
-        <FormGroup>
-            <Col smOffset={2} sm={10}>
-                <Checkbox>Remember me</Checkbox>
+        <FormGroup controlId='formHorizontalPasswordDouble'>
+            <Col componentClass={ControlLabel} sm={2}>
+                Password Double
+            </Col>
+            <Col sm={10}>
+                <FormControl type='password' placeholder='Password Double' />
             </Col>
         </FormGroup>
 
         <FormGroup>
             <Col smOffset={2} sm={10}>
                 <Button type='submit'>
-                Sign in
+                Sign up
                 </Button>
             </Col>
         </FormGroup>
     </Form>
 );
 
-class LoginPage extends React.Component {
+class SignupPage extends React.Component {
     constructor(props) {
         super(props);
     }
 
     render() {
         return (
-            <div className='login-page'>
-                <div className='login-page__header'>
+            <div className='signup-page'>
+                <div className='signup-page__header'>
                     <Header
-                        buttonContent='Sign Up'
-                        buttonHref='/signup'
+                        buttonContent='Sign In'
+                        buttonHref='/login'
                     />
                 </div>
-                <div className='login-page__form'>
+                <div className='signup-page__form'>
                     {formInstance}
                 </div>
             </div>
@@ -69,4 +71,4 @@ class LoginPage extends React.Component {
     }
 }
 
-export default LoginPage;
+export default SignupPage;

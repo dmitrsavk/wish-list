@@ -1,0 +1,32 @@
+@import '../Media/media';
+
+.header {
+    position: relative;
+    background-color: #212f3d;
+
+	&:after {
+        content: "";
+	    display: table;
+	    clear: both;
+	}
+}
+
+.header-signup {
+	position: absolute;
+    right: 25px;
+    top: 10px;
+}
+
+.header-label {
+	margin: 0 auto;
+    padding: 13px;
+    text-align: center;
+    font-size: 24px;
+}
+
+@include media-xs {
+	.header-label {
+		padding-left: 25px;
+		text-align: left;
+	}
+}

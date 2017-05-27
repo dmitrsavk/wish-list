@@ -1,10 +1,17 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import './App.scss';
 import './bootstrap.min.css';
-import LoginPage from '../LoginPage';
+
 
 class App extends React.Component {
+    static get propTypes() {
+        return {
+            children: PropTypes.node
+        };
+    }
+
     constructor(props) {
         super(props);
     }
@@ -12,7 +19,7 @@ class App extends React.Component {
     render() {
         return (
             <div className='App'>
-                <LoginPage />
+                {this.props.children}
             </div>
         );
     }

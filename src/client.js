@@ -1,7 +1,12 @@
-/* jshint esversion: 6 */
+import React from 'react';
+import ReactDOM from 'react-dom';
+import { BrowserRouter } from 'react-router-dom';
+import routes from './routes';
 
-import React      from 'react';
-import ReactDOM   from 'react-dom';
-import App        from 'components/App';
+const component = (
+    <BrowserRouter>
+        {routes}
+    </BrowserRouter>
+);
 
-ReactDOM.render(<App />, document.getElementById('react-view'));
+ReactDOM.render(component, document.getElementById('react-view'));
