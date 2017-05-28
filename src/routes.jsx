@@ -8,12 +8,9 @@ import App from './components/App';
 const isLogged = false;
 
 const mainRender = () => {
-	if (isLogged) {
-		return <MainPage />;
-	} else {
-		return <Redirect to='/login'/>;
-	}
-}
+    return isLogged ?
+        <MainPage /> : <Redirect to='/login'/>;
+};
 
 export default (
     <App>
