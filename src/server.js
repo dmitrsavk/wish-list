@@ -6,9 +6,25 @@ import App from 'components/App';
 import ReactDOMServer from 'react-dom/server';
 import { StaticRouter } from 'react-router';
 import routes from './routes';
+import cookieParser from 'cookie-parser';
+import bodyParser from 'body-parser';
 
+import {
+    fetch,
+    authenticateStart,
+    authenticateComplete,
+    authenticateError,
+    parseResponse
+} from 'redux-oauth';
+
+const log = require('./libs/log')(module);
+const api = require('./api');
 
 const app = express();
+app.use(bodyParser.json());
+app.use(cookieParser());
+
+app.use('/api/user', api.user.router);
 
 app.use((req, res) => {
     const context = {};
@@ -47,5 +63,5 @@ function renderHTML(componentHTML) {
 const PORT = process.env.PORT || 3001;
 
 app.listen(PORT, () => {
-  console.log(`Server listening on: ${PORT}`);
+  log.info(`Server listening on: ${PORT}`);
 });
