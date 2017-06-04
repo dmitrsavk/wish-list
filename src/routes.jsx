@@ -12,10 +12,14 @@ const mainRender = () => {
         <MainPage /> : <Redirect to='/login'/>;
 };
 
+const loginRender = () => {
+    return <LoginPage/>;
+};
+
 export default (
     <App>
         <Route exact path= '/' render={mainRender} />
-        <Route path='/login' component={LoginPage} />
+        <Route path='/login' render={loginRender} />
         <Route path='/signup' component={SignupPage} />
     </App>
 );

@@ -8,6 +8,8 @@ import { StaticRouter } from 'react-router';
 import routes from './routes';
 import cookieParser from 'cookie-parser';
 import bodyParser from 'body-parser';
+import { Provider } from 'react-redux';
+import configureStore from './redux/configureStore';
 
 import {
     fetch,
@@ -27,14 +29,18 @@ app.use(cookieParser());
 app.use('/api/user', api.user.router);
 
 app.use((req, res) => {
+    const store = configureStore();
     const context = {};
+
     const html = ReactDOMServer.renderToString(
-        <StaticRouter
-            location={req.url}
-            context={context}
-        >
-            {routes}
-        </StaticRouter>
+        <Provider store={store}>
+            <StaticRouter
+                location={req.url}
+                context={context}
+            >
+                {routes}
+            </StaticRouter>
+        </Provider>
     );
 
     res.status(200).send(renderHTML(html));

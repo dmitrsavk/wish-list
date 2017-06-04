@@ -145,7 +145,7 @@
             "arraysInArrays": true
         }],
         "newline-after-var": [1, "always"],
-        "brace-style": [2, "1tbs"],
+        "brace-style": [0, "1tbs"],
         "camelcase": [2, { "properties": "always" }],
         "comma-spacing": [2, { "before": false, "after": true }],
         "comma-style": [2, "last"],
@@ -214,7 +214,7 @@
         "react/no-did-update-set-state": 0,
         "react/no-direct-mutation-state": 2,
         "react/no-is-mounted": 2,
-        "react/no-multi-comp": 2,
+        "react/no-multi-comp": 0,
         "react/no-string-refs": 2,
         "react/no-unknown-property": 2,
         "react/prefer-es6-class": 2,
