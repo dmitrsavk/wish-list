@@ -11,7 +11,10 @@ const UserModel = db.define('user', {
     },
 	login: {
 		type: Sequelize.STRING,
-		field: 'login'
+		field: 'login',
+        validate: {
+            isEmail: true
+        }
 	},
 	password: {
 		type: Sequelize.STRING,

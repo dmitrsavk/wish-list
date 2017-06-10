@@ -31,6 +31,7 @@ app.use('/api/user', api.user.router);
 app.use((req, res) => {
     const store = configureStore();
     const context = {};
+    const state = store.getState();
 
     const html = ReactDOMServer.renderToString(
         <Provider store={store}>
@@ -43,25 +44,28 @@ app.use((req, res) => {
         </Provider>
     );
 
-    res.status(200).send(renderHTML(html));
+    res.status(200).send(renderHTML(html, state));
 });
 
 const assetUrl = process.env.NODE_ENV !== 'production' ? 'http://localhost:8050' : '/';
 
-function renderHTML(componentHTML) {
+function renderHTML(componentHTML, initialState) {
   return `
     <!DOCTYPE html>
-      <html>
-      <head>
-          <meta charset="utf-8">
-          <meta name="viewport" content="width=device-width, initial-scale=1.0">
-          <title>Wish List</title>
-          <link rel="stylesheet" href="${assetUrl}/public/assets/styles.css">
-      </head>
-      <body>
-        <div id="react-view">${componentHTML}</div>
-        <script type="application/javascript" src="${assetUrl}/public/assets/bundle.js"></script>
-      </body>
+        <html>
+        <head>
+            <meta charset="utf-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Wish List</title>
+            <link rel="stylesheet" href="${assetUrl}/public/assets/styles.css">
+            <script type="application/javascript">
+                window.REDUX_INITIAL_STATE = ${JSON.stringify(initialState)};
+            </script>
+        </head>
+        <body>
+            <div id="react-view">${componentHTML}</div>
+            <script type="application/javascript" src="${assetUrl}/public/assets/bundle.js"></script>
+        </body>
     </html>
   `;
 }
@@ -69,5 +73,5 @@ function renderHTML(componentHTML) {
 const PORT = process.env.PORT || 3001;
 
 app.listen(PORT, () => {
-  log.info(`Server listening on: ${PORT}`);
+    log.info(`Server listening on: ${PORT}`);
 });

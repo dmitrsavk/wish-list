@@ -6,7 +6,6 @@ import Form from 'react-bootstrap/lib/Form';
 import FormControl from 'react-bootstrap/lib/FormControl';
 import ControlLabel from 'react-bootstrap/lib/ControlLabel';
 import Button from 'react-bootstrap/lib/Button';
-import Checkbox from 'react-bootstrap/lib/Checkbox';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { findUser } from '../../redux/actions/loginActions';
@@ -28,7 +27,7 @@ class LoginPage extends React.Component {
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
-    handleSubmit() {
+    handleSubmit(event) {
         event.preventDefault();
         this.props.dispatch(findUser({
             login: ReactDOM.findDOMNode(this.login).value,
@@ -75,12 +74,6 @@ class LoginPage extends React.Component {
 
                         <FormGroup>
                             <Col smOffset={2} sm={10}>
-                                <Checkbox>Remember me</Checkbox>
-                            </Col>
-                        </FormGroup>
-
-                        <FormGroup>
-                            <Col smOffset={2} sm={10}>
                                 <Button type='submit'>
                                 Sign in
                                 </Button>
@@ -92,7 +85,5 @@ class LoginPage extends React.Component {
         );
     }
 }
-
-LoginPage.PropTypes = PropTypes;
 
 export default connect()(LoginPage);
